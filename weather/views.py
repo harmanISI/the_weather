@@ -14,9 +14,9 @@ def index(request):
         form = CityForm(request.POST)
         if form.is_valid():
             new_city=form.cleaned_data['name']
-            print(new_city)
+        
             existing= City.objects.filter(name=new_city).count()
-            print(existing)
+        
             if existing == 0:
                 r = requests.get(url.format(new_city)).json()
                 if r['cod']== 200:
@@ -24,7 +24,7 @@ def index(request):
                  print("Form saved ")
                 
                 else:
-                  err= 'City doesnot exist in the world '
+                  err= 'City doesnot exist in the world'
             else:
              err='City already exist in page'
 
